@@ -95,9 +95,6 @@ report-prepare:
 report-clean:
 	rm -rf $(dir)/reports/*
 
-wait-for-db:
-	@make exec cmd="php bin/console db:wait"
-
 composer-install-no-dev:
 	@make exec-bash cmd="COMPOSER_MEMORY_LIMIT=-1 composer install --optimize-autoloader --no-dev"
 
@@ -119,9 +116,6 @@ logs-supervisord:
 
 logs-mysql:
 	@docker logs -f ${COMPOSE_PROJECT_NAME}_mysql
-
-logs-rabbitmq:
-	@docker logs -f ${COMPOSE_PROJECT_NAME}_rabbitmq
 
 drop-migrate:
 	@make exec cmd="php bin/console doctrine:schema:drop --full-database --force"
